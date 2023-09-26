@@ -1,10 +1,32 @@
-// création d'un élément
-const bubble = document.createElement("span");
-// ajout de la class css "bubble"
-bubble.classList.add("bubble");
-// permet d'ajouter au body le span
-document.body.appendChild(bubble);
+const counterDisplay = document.querySelector("h3");
+let counter = 0;
 
-const size = Math.random() * 200 + 100 + "px";
+const bubbleMaker = () => {
+  // création d'un élément
+  const bubble = document.createElement("span");
+  // ajout de la class css "bubble"
+  bubble.classList.add("bubble");
+  // permet d'ajouter au body le span
+  document.body.appendChild(bubble);
 
-console.log(size);
+  const size = Math.random() * 200 + 100 + "px";
+  bubble.style.height = size;
+  bubble.style.width = size;
+
+  bubble.style.top = Math.random() * 100 + 50 + "%";
+  bubble.style.left = Math.random() * 100 + "%";
+
+  bubble.style.setProperty("--left", Math.random() * 100 + "%");
+
+  bubble.addEventListener("click", () => {
+    counter++;
+    counterDisplay.textContent = counter;
+    bubble.remove();
+  });
+
+  setTimeout(() => {
+    bubble.remove();
+  }, 8000);
+};
+
+setInterval(bubbleMaker, 300);
